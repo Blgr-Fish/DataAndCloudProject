@@ -1,0 +1,11 @@
+URL webapp : https://tinyinsta-benchmark.ew.r.appspot.com/
+
+Remplissage de la DataBase : python seed.py --users 1000 --posts 50000 --follows-min 20 --follows-max 20
+
+50 000 posts car (50 x 1000) posts.
+
+1/ Passage à l'échelle sur la charge :
+
+1, 10, 20, 50, 100, 1000 utilisateurs simultanés
+
+Utiliser HTTP au lieu de HTTPS pour "ab" sinon echoue.
