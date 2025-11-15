@@ -8,4 +8,12 @@ Remplissage de la DataBase : python seed.py --users 1000 --posts 50000 --follows
 
 1, 10, 20, 50, 100, 1000 utilisateurs simultanés
 
-Utiliser HTTP au lieu de HTTPS pour "ab" sinon echoue.
+2/ Passage à l'échelle sur la taille : 
+
+Utiliser reset_post.py dans le google cloud console (on peut vérifier parallèlement la suppression depuis le datastore)
+
+10 000 posts puis 100 000 posts puis 1 000 000 posts
+
+python seed.py --users 1000 --posts 10000 --follows-min 20 --follows-max 20
+python seed.py --users 1000 --posts 100000 --follows-min 20 --follows-max 20
+python seed.py --users 1000 --posts 1000000 --follows-min 20 --follows-max 20
