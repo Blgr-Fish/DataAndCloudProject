@@ -2,13 +2,13 @@ import subprocess
 import csv
 import re
 
-params = [1, 10, 20, 50, 100, 1000]
+params = [50]
 runs = 3
 url = "http://tinyinsta-benchmark.ew.r.appspot.com/api/timeline?user=user1&limit=20"
 
-with open("conc/conc.csv", "w", newline="") as f:
+with open("post/post.csv", "w", newline="") as f:
     writer = csv.writer(f)
-    writer.writerow(["PARAM", "AVG_TIME", "RUN", "FAILED"])
+    writer.writerow(["PARAM", "AVG_LAT_MS", "RUN", "FAILED"])
 
     for concurrent in params:
         amount = concurrent

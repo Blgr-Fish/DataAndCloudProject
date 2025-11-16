@@ -4,9 +4,9 @@ import numpy as np
 from matplotlib.ticker import ScalarFormatter
 
 df = pd.read_csv("conc/conc.csv")
-df["AVG_LAT_S"] = df["AVG_LAT_MS"] / 1000.0
+df["AVG_TIME_S"] = df["AVG_TIME"] / 1000.0
 
-grouped = df.groupby("PARAM")["AVG_LAT_S"]
+grouped = df.groupby("PARAM")["AVG_TIME"]
 means = grouped.mean().values
 stds = grouped.std().values
 params = grouped.mean().index.tolist()
