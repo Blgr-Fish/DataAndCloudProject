@@ -1,3 +1,4 @@
+# A UTILISER DANS LE GOOGLE CLOUD SHELL POUR VIDER LES TABLES Post ET User
 from google.cloud import datastore
 
 client = datastore.Client()
