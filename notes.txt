@@ -18,3 +18,11 @@ Remettre le index avec index.yaml
 python seed.py --users 1000 --posts 10000 --follows-min 20 --follows-max 20
 python seed.py --users 1000 --posts 100000 --follows-min 20 --follows-max 20
 python seed.py --users 1000 --posts 1000000 --follows-min 20 --follows-max 20
+
+Création d'un seedv2.py dans le console cloud pour écrire plus rapidement dans la base de donnée (par batch de 500 au lieu de 1 par 1)
+
+Pour la partie 3
+
+python seedv2.py --users 1000 --posts 100000 --follows-min 10 --follows-max 10
+python seedv2.py --users 1000 --posts 100000 --follows-min 50 --follows-max 50
+python seedv2.py --users 1000 --posts 100000 --follows-min 100 --follows-max 100

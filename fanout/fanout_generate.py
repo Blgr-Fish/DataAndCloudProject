@@ -4,8 +4,8 @@ import numpy as np
 from matplotlib.ticker import ScalarFormatter
 
 # fichiers CSV et labels correspondants
-files = ["post/post10.csv", "post/post100.csv", "post/post1000.csv"]
-labels = ["10 posts/user", "100 posts/user", "1000 posts/user"]
+files = ["fanout/fanout10.csv", "fanout/fanout50.csv", "fanout/fanout100.csv"]
+labels = ["10 followee/user", "50 followee/user", "100 followee/user"]
 
 means_list = []
 
@@ -27,14 +27,17 @@ bars = plt.bar(
     capsize=5
 )
 
+
+
 plt.xticks(x, labels)
-plt.yscale("log")
+plt.yscale("log")   # Échelle logarithmique
 plt.ylabel("Temps moyen par requête (secondes)")
-plt.title("Temps moyen par requête selon la taille des posts")
+plt.title("Temps moyen par requête selon le nombre de followees (200 requêtes, 50 concurrentes)")
 
 # Forcer affichage normal (pas scientifique) sur y
 plt.gca().yaxis.set_major_formatter(ScalarFormatter())
 plt.gca().yaxis.get_major_formatter().set_scientific(False)
+
 
 # Ajouter la valeur au-dessus de chaque barre
 for xi, val in zip(x, means_list):
@@ -50,5 +53,5 @@ for xi, val in zip(x, means_list):
     )
 
 plt.tight_layout()
-plt.savefig("post/post.png")
+plt.savefig("fanout/fanout.png")
 plt.close()

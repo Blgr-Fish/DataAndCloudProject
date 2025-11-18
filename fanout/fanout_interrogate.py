@@ -3,15 +3,16 @@ import csv
 import re
 
 params = [50]
+
 runs = 3
 url = "http://tinyinsta-benchmark.ew.r.appspot.com/api/timeline?user=user1&limit=20"
 
-with open("post/post.csv", "w", newline="") as f:
+with open("fanout/fanout.csv", "w", newline="") as f:
     writer = csv.writer(f)
     writer.writerow(["PARAM", "AVG_TIME", "RUN", "FAILED"])
 
     for concurrent in params:
-        amount = concurrent
+        amount = 200
         for r in range(1, runs + 1):
             print(f"Running test: {concurrent} concurrent, run {r}...")
 
