@@ -1,34 +1,40 @@
-import subprocess
+import aiohttp
+import asyncio
+import time
 import csv
-import re
 
 params = [1, 10, 20, 50, 100, 1000]
 runs = 3
-url = "http://tinyinsta-benchmark.ew.r.appspot.com/api/timeline?user=user1&limit=20"
+base_url = "http://tinyinsta-benchmark.ew.r.appspot.com/api/timeline?limit=20"
+
+async def fetch(session, url):
+    start = time.monotonic()
+    try:
+        async with session.get(url) as resp:
+            await resp.text()
+            return (time.monotonic() - start) * 1000, 0
+    except:
+        return None, 1
+
+async def run_test(concurrent):
+    urls = [f"{base_url}&user=user{i}" for i in range(concurrent)]
+    async with aiohttp.ClientSession() as session:
+        tasks = [fetch(session, url) for url in urls]
+        return await asyncio.gather(*tasks)
 
 with open("conc/conc.csv", "w", newline="") as f:
     writer = csv.writer(f)
     writer.writerow(["PARAM", "AVG_TIME", "RUN", "FAILED"])
 
     for concurrent in params:
-        amount = concurrent
         for r in range(1, runs + 1):
-            print(f"Running test: {concurrent} concurrent, run {r}...")
+            print(f"Running test: {concurrent} concurrent users, run {r}...")
+            results = asyncio.run(run_test(concurrent))
 
-            result = subprocess.run(
-                ["hey", "-n", str(amount), "-c", str(concurrent), url],
-                capture_output=True,
-                text=True
-            )
-            output = result.stdout
+            latencies = [lat for lat, fail in results if lat is not None]
+            failures = sum(fail for lat, fail in results)
 
-            # Extraire latence moyenne
-            match_lat = re.search(r"Average:\s+([\d\.]+)\s+secs", output)
-            avg_lat = float(match_lat.group(1)) * 1000 if match_lat else None  # convert to ms
+            avg_lat = sum(latencies) / len(latencies) if latencies else None
 
-            # Extraire erreurs
-            match_fail = re.search(r"Non-2xx responses:\s+(\d+)", output)
-            failed = int(match_fail.group(1)) if match_fail else 0
-
-            writer.writerow([concurrent, avg_lat, r, failed])
-            print(f"Done: AVG_LAT={avg_lat} ms, FAILED={failed}")
+            print(f"Done: AVG_LAT={avg_lat} ms, FAILED={failures}")
+            writer.writerow([concurrent, avg_lat, r, failures])
