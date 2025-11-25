@@ -7,32 +7,32 @@ Présentation des résultats CSV présents dans le dossier `out/`. Pour chaque e
 - Un tableau reprenant les lignes du CSV correspondant aux valeurs en provenance de  `out/`),
 - L'image du graphe associé.
 
-**Remarque** : j'ai utilisé `hey` (heybenchmark) au lieu d'ApacheBench (`ab`) parce que `ab` provoquait des timeouts sur mes tests. J'ai aussi modifié sur mon `google cloud console` le fichier `seed.py` pour qu'il insère plus rapidement dans les tables. Pour finir, le fichier `reset_tables.py` a été utilisé pour vider les tables `Post` et `User`.
+**Remarque** : j'ai utilisé `hey` (heybenchmark) au lieu d'ApacheBench (`ab`) parce que `ab` provoquait des timeouts sur mes tests. J'ai aussi modifié sur mon `google cloud console` le fichier `seed.py` pour qu'il insère plus rapidement dans les tables. Pour finir, le fichier `reset_tables.py` a été utilisé pour vider les tables `Post` et `User`. J'ai utilisé un script python qui utilise `asyncio` pour gérer le parralélisme des requêtes.
 
 ## Concurrence (`out/conc.csv`)
 
 Paramètres CSV :
-
 | PARAM | AVG_TIME | RUN | FAILED |
 |---:|---:|---:|---:|
-| 1 | 70.1 | 1 | 0 |
-| 1 | 55.6 | 2 | 0 |
-| 1 | 51.7 | 3 | 0 |
-| 10 | 113.0 | 1 | 0 |
-| 10 | 120.8 | 2 | 0 |
-| 10 | 118.8 | 3 | 0 |
-| 20 | 157.8 | 1 | 0 |
-| 20 | 159.3 | 2 | 0 |
-| 20 | 147.2 | 3 | 0 |
-| 50 | 255.6 | 1 | 0 |
-| 50 | 257.3 | 2 | 0 |
-| 50 | 215.6 | 3 | 0 |
-| 100 | 425.7 | 1 | 0 |
-| 100 | 435.2 | 2 | 0 |
-| 100 | 463.5 | 3 | 0 |
-| 1000 | 4952.8 | 1 | 0 |
-| 1000 | 5608.8 | 2 | 0 |
-| 1000 | 7354.7 | 3 | 0 |
+| 1 | 58.790171 | 1 | 0 |
+| 1 | 56.354456 | 2 | 0 |
+| 1 | 58.870938 | 3 | 0 |
+| 10 | 275.573301 | 1 | 0 |
+| 10 | 253.105996 | 2 | 0 |
+| 10 | 255.876499 | 3 | 0 |
+| 20 | 253.241969 | 1 | 0 |
+| 20 | 259.843746 | 2 | 0 |
+| 20 | 260.654418 | 3 | 0 |
+| 50 | 332.069559 | 1 | 0 |
+| 50 | 327.036626 | 2 | 0 |
+| 50 | 329.091950 | 3 | 0 |
+| 100 | 621.635210 | 1 | 0 |
+| 100 | 626.274089 | 2 | 0 |
+| 100 | 1507.057411 | 3 | 0 |
+| 1000 | 5793.259862 | 1 | 0 |
+| 1000 | 5994.470221 | 2 | 0 |
+| 1000 | 6624.679375 | 3 | 0 |
+
 
 Graphe associé :
 
@@ -42,17 +42,18 @@ Graphe associé :
 
 Paramètres CSV :
 
-| PARAM | AVG_TIME | RUN | FAILED |
-|---:|---:|---:|---:|
-| 50 | 270.9 | 1 | 0 |
-| 50 | 249.9 | 2 | 0 |
-| 50 | 228.7 | 3 | 0 |
-| 50 | 268.0 | 1 | 0 |
-| 50 | 226.1 | 2 | 0 |
-| 50 | 194.1 | 3 | 0 |
-| 50 | 6260.8 | 1 | 0 |
-| 50 | 5776.5 | 2 | 0 |
-| 50 | 6125.2 | 3 | 0 |
+| RUN | AVG_TIME | FAILED |
+|---:|---:|---:|
+| 1 | 296.363276 | 0 |
+| 2 | 302.325786 | 0 |
+| 3 | 299.847851 | 0 |
+| 1 | 356.433575 | 0 |
+| 2 | 349.396688 | 0 |
+| 3 | 353.280024 | 0 |
+| 1 | 327.134374 | 0 |
+| 2 | 305.451821 | 0 |
+| 3 | 303.773398 | 0 |
+
 
 Graphe associé :
 
@@ -62,17 +63,17 @@ Graphe associé :
 
  Paramètres CSV :
 
-| PARAM | AVG_TIME | RUN | FAILED |
-|---:|---:|---:|---:|
-| 50 | 376.5 | 1 | 0 |
-| 50 | 340.5 | 2 | 0 |
-| 50 | 326.7 | 3 | 0 |
-| 50 | 449.8 | 1 | 0 |
-| 50 | 437.8 | 2 | 0 |
-| 50 | 443.2 | 3 | 0 |
-| 50 | 7440.0 | 1 | 0 |
-| 50 | 8385.2 | 2 | 0 |
-| 50 | 12858.6 | 3 | 0 |
+| RUN | AVG_TIME | FAILED |
+|---:|---:|---:|
+| 1 | 309.738523 | 0 |
+| 2 | 311.650689 | 0 |
+| 3 | 336.177380 | 0 |
+| 1 | 8432.654651 | 0 |
+| 2 | 8432.417249 | 0 |
+| 3 | 8272.648992 | 0 |
+| 1 | 16336.609924 | 0 |
+| 2 | 15549.078632 | 0 |
+| 3 | 15771.376526 | 0 |
 
 Graphe associé :
 
